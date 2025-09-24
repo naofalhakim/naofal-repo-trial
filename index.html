@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Native Developer - CV</title>
+  <style>
+    /* General Styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #f9fafb; color: #333; line-height: 1.6; }
+    a { text-decoration: none; transition: 0.3s; }
+    img { max-width: 100%; display: block; }
+    section { padding: 60px 20px; }
+    h2 { text-align: center; margin-bottom: 20px; font-size: 2em; color: #2563eb; }
+
+    /* Navbar */
+    nav { position: fixed; top: 0; left: 0; width: 100%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 100; }
+    nav .container { max-width: 1000px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 15px; }
+    nav ul { display: flex; gap: 20px; list-style: none; }
+    nav ul li a { color: #333; font-weight: bold; }
+    nav ul li a:hover { color: #2563eb; }
+
+    /* Hero */
+    .hero { text-align: center; background: linear-gradient(to right, #dbeafe, #ccfbf1); padding-top: 120px; }
+    .hero img { width: 120px; height: 120px; border-radius: 50%; margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .hero h1 { font-size: 2em; margin-bottom: 5px; }
+    .hero p { max-width: 600px; margin: 10px auto 20px; }
+    .buttons a { display: inline-block; margin: 5px; padding: 10px 15px; border-radius: 6px; background: #2563eb; color: #fff; font-size: 14px; }
+    .buttons a:hover { background: #1d4ed8; }
+
+    /* Experience */
+    .timeline { border-left: 3px solid #2563eb; padding-left: 20px; max-width: 800px; margin: auto; }
+    .timeline div { margin-bottom: 20px; }
+    .timeline h3 { font-size: 1.2em; margin-bottom: 5px; }
+
+    /* Projects */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 15px; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-5px); }
+    .card img { border-radius: 8px; margin-bottom: 10px; }
+    .card h4 { margin-bottom: 5px; }
+
+    /* Achievements, Education, Skills */
+    ul { max-width: 800px; margin: auto; padding-left: 20px; }
+    ul li { margin-bottom: 10px; }
+
+    /* Skills */
+    .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; max-width: 800px; margin: auto; }
+    .skills div { background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
+
+    /* Footer */
+    footer { text-align: center; padding: 20px; background: #fff; border-top: 1px solid #ddd; }
+    footer a { margin: 0 10px; color: #2563eb; }
+    footer button { margin-top: 10px; padding: 8px 15px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+    footer button:hover { background: #1d4ed8; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="container">
+      <h3>Naofal Hakim</h3>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="about" class="hero">
+    <img src="profile.jpg" alt="Profile">
+    <h1>Naofal Hakim</h1>
+    <p><strong>React Native Developer</strong></p>
+    <p>Passionate about building intuitive and scalable mobile apps. Specialized in React Native, state management, and API integrations.</p>
+    <div class="buttons">
+      <a href="mailto:your@email.com">Email</a>
+      <a href="https://github.com/username" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/username" target="_blank">LinkedIn</a>
+      <a href="https://play.google.com/store/apps/dev?id=XXXX" target="_blank">Play Store</a>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div>
+        <h3>Mobile Developer @ Tech Company (2022–Present)</h3>
+        <ul>
+          <li>Developed cross-platform apps with React Native</li>
+          <li>Integrated Firebase services and REST APIs</li>
+          <li>Optimized UI/UX and improved performance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="project1.png" alt="Project 1">
+        <h4>Fitness Tracker App</h4>
+        <p>Helps users track workouts and goals.</p>
+        <small>Tech: React Native, Firebase</small><br>
+        <a href="#">View on Play Store →</a>
+      </div>
+      <div class="card">
+        <img src="project2.png" alt="Project 2">
+        <h4>Budget Planner</h4>
+        <p>Manage personal expenses easily.</p>
+        <small>Tech: React Native, Zustand</small><br>
+        <a href="#">View on Play Store →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education & Learning</h2>
+    <ul>
+      <li>Computer Science BSc – University XYZ (2019–2023)</li>
+      <li>React Native Bootcamp – Online Platform (2022)</li>
+      <li>Continuous learning in TypeScript, Zustand, Firebase</li>
+    </ul>
+  </section>
+
+  <!-- Achievements -->
+  <section id="achievements">
+    <h2>Achievements</h2>
+    <ul>
+      <li>Reached 10k+ downloads on Play Store for Fitness App</li>
+      <li>Won 2nd place in Hackathon XYZ (2023)</li>
+      <li>Launched 5+ apps successfully on Play Store</li>
+    </ul>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div>React Native</div>
+      <div>JavaScript / TypeScript</div>
+      <div>Firebase</div>
+      <div>REST APIs</div>
+      <div>UI/UX Optimization</div>
+      <div>Teamwork & Communication</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Naofal Hakim. All rights reserved.</p>
+    <a href="mailto:your@email.com">Email</a>
+    <a href="https://github.com/username">GitHub</a>
+    <a href="https://linkedin.com/in/username">LinkedIn</a><br>
+    <button onclick="downloadCV()">Download CV (PDF)</button>
+  </footer>
+
+  <script>
+    function downloadCV() {
+      alert("This will trigger CV download in PDF (placeholder).");
+    }
+  </script>
+</body>
+</html>
