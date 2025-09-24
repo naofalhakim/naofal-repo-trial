@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Moch. Agusta Naofal H — React Native Developer</title>
+
+  <style>
+    :root{
+      --bg: #fbfdff;
+      --card: #ffffff;
+      --muted: #58607a;
+      --accent: #1666f2; /* soft blue */
+      --accent-2: #06b6d4; /* teal */
+      --radius: 12px;
+      --max-w: 1100px;
+      --shadow: 0 8px 20px rgba(16,24,40,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg),#fff 60%);
+      color:#0f172a;
+      line-height:1.5;
+      padding-top:72px;
+    }
+
+    .container{width:94%;max-width:var(--max-w);margin:0 auto}
+
+    /* NAV */
+    nav{
+      position:fixed;left:0;right:0;top:0;height:72px;z-index:1000;
+      background:rgba(255,255,255,0.9);backdrop-filter: blur(6px);
+      border-bottom:1px solid rgba(15,23,42,0.04);display:flex;align-items:center;
+    }
+    .nav-inner{width:100%;display:flex;justify-content:space-between;align-items:center;padding:0 16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--accent)}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+    .nav-links{display:flex;gap:14px}
+    .nav-links a{font-weight:600;color:#0f172a;padding:8px 10px;border-radius:8px}
+    .nav-links a:hover{background:rgba(22,102,242,0.08);color:var(--accent)}
+
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;border:0;padding:8px 12px;border-radius:9px;font-weight:700;cursor:pointer;box-shadow: var(--shadow)}
+    .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:7px 12px;border-radius:9px;color:var(--accent);font-weight:700;cursor:pointer}
+
+    /* HERO */
+    .hero{padding:36px 0}
+    .hero-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center}
+    .avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,0.85)}
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .hero h1{margin:0;font-size:20px}
+    .hero .title{color:var(--accent);font-weight:700;margin-top:4px}
+    .summary{color:var(--muted);margin-top:8px;max-width:760px}
+    .contact-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:rgba(22,102,242,0.06);color:var(--accent);font-weight:700}
+
+    /* Sections */
+    section{padding:40px 0}
+    h2{color:var(--accent);text-align:center;margin:0 0 10px;font-size:18px}
+    .lead{text-align:center;color:var(--muted);margin:0 auto 18px;max-width:900px}
+
+    /* EXPERIENCE */
+    .timeline{display:flex;flex-direction:column;gap:14px;max-width:980px;margin:0 auto}
+    .role{background:var(--card);padding:14px;border-radius:10px;box-shadow:var(--shadow);transition:transform .16s ease}
+    .role:hover{transform:translateY(-6px)}
+    .role .meta{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+    .company{font-weight:800}
+    .range{color:var(--muted);font-weight:700}
+    .bullets{margin-top:8px;color:var(--muted)}
+    .bullets ul{margin:0;padding-left:18px}
+
+    /* PORTFOLIO */
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));max-width:1100px;margin:0 auto}
+    .card{background:var(--card);border-radius:10px;padding:12px;box-shadow:var(--shadow);overflow:hidden;transition:transform .16s}
+    .card:hover{transform:translateY(-8px)}
+    .thumb{height:140px;border-radius:8px;overflow:hidden;margin-bottom:10px}
+    .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .28s}
+    .card:hover .thumb img{transform:scale(1.04)}
+    .tech{display:inline-block;margin-right:6px;padding:6px 8px;border-radius:8px;background:rgba(14,165,233,0.06);font-weight:700;color:#334155;font-size:12px}
+
+    /* ACHIEVEMENTS */
+    .metrics{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .metric{background:var(--card);padding:12px;border-radius:10px;min-width:120px;text-align:center;box-shadow:var(--shadow)}
+    .metric b{display:block;color:var(--accent);font-size:18px}
+
+    /* SKILLS */
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;max-width:900px;margin:0 auto}
+    .skill{background:var(--card);padding:10px;border-radius:10px;text-align:center;box-shadow:var(--shadow);font-weight:700}
+
+    /* FOOTER */
+    footer{padding:24px 0;border-top:1px solid rgba(15,23,42,0.04);text-align:center;color:var(--muted)}
+
+    /* Animations */
+    .fade{opacity:0;transform:translateY(18px);transition:all .6s cubic-bezier(.2,.9,.25,1)}
+    .fade.show{opacity:1;transform:none}
+
+    /* Responsive */
+    @media (max-width:880px){
+      .hero-card{grid-template-columns:92px 1fr;padding:14px}
+      .avatar{width:92px;height:92px}
+      .nav-links{display:none}
+    }
+    @media (max-width:540px){
+      .hero-card{grid-template-columns:1fr;text-align:center}
+      .contact-row{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo">NA</div>
+        <div style="line-height:1">
+          <div style="font-size:14px">Moch. Agusta Naofal H</div>
+          <div style="font-size:12px;color:var(--muted)">React Native Developer</div>
+        </div>
+      </div>
+
+      <div class="nav-links" role="navigation" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Portfolio</a>
+        <a href="#education">Education</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#skills">Skills</a>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn-primary" onclick="generatePDF()">Download CV</button>
+        <a class="btn-ghost" href="mailto:john.doe@example.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / ABOUT -->
+  <section id="about" class="hero container">
+    <div class="hero-card fade">
+      <div class="avatar" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&w=800&auto=format&fit=crop" alt="Naofal profile photo">
+      </div>
+
+      <div>
+        <h1>Moch. Agusta Naofal H</h1>
+        <div class="title">React Native / Mobile Developer — 7 years experience</div>
+
+        <p class="summary">
+          Mobile developer with 7 years of experience building scalable and user-friendly Android and iOS apps.
+          Strong in React Native, Android native (Java/Kotlin), and React JS. Experienced in API integration,
+          Firebase, state management (Redux/Zustand), and CI/CD. Passionate about product impact and mentoring.
+        </p>
+
+        <div class="contact-row" aria-label="Contact links">
+          <span class="chip">✉ john.doe@example.com</span>
+          <span class="chip">📍 Jakarta, Indonesia</span>
+          <a class="chip" href="https://github.com/naofalhakim" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://linkedin.com/in/username" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="chip" href="https://play.google.com/store/apps/dev?id=XXXX" target="_blank" rel="noopener">Play Store</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <h2>Professional Experience</h2>
+    <p class="lead">Selected roles where I led mobile features, improved performance, and shipped production apps.</p>
+
+    <div class="timeline">
+      <article class="role fade" tabindex="0">
+        <div class="meta">
+          <div>
+            <div class="company">PT. Indocyber Global Teknologi (Client: Mitra Solusi Telematika)</div>
+            <div style="font-size:13px;color:var(--muted)">Mobile Developer — Sep 2020 – Present, South Jakarta</div>
+          </div>
+          <div class="range">Lead features · Reusable components</div>
+        </div>
+        <div class="bullets">
+          <ul>
+            <li>Maintained and developed Trakindo core apps: HCMS App (overtime flow), Trakindo Customer App (auth, service updates).</li>
+            <li>Built dashboards for operations (finance, hit rate, service assignment & rating) using React JS.</li>
+            <li>Introduced reusable UI components and supported CI/CD (Jenkins); performed pre-release testing and bug fixes.</li>
+            <li><strong>Tech:</strong> React Native, React JS, Redux, Axios, Jest, Jenkins, Amazon Cognito / ADB2C.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role fade" tabindex="0">
+        <div class="meta">
+          <div>
+            <div class="company">PT. Tanijoy Agriteknologi Nusantara</div>
+            <div style="font-size:13px;color:var(--muted)">Mobile Developer — Sep 2019 – Sep 2020, South Jakarta</div>
+          </div>
+          <div class="range">Field apps · Product discovery</div>
+        </div>
+        <div class="bullets">
+          <ul>
+            <li>Built Surveyor & Farming apps to streamline field operations and finance workflows for farmers.</li>
+            <li>Improved field efficiency with responsive UI and location features (Google Maps).</li>
+            <li>Applied Jobs-To-Be-Done research to define features aligned with user needs.</li>
+            <li><strong>Tech:</strong> React Native, Google Maps API, Redux, Axios, Local Storage.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role fade" tabindex="0">
+        <div class="meta">
+          <div>
+            <div class="company">PT. Ursabyte</div>
+            <div style="font-size:13px;color:var(--muted)">Android Developer — Feb 2019 – May 2019, Bandung</div>
+          </div>
+          <div class="range">Native Android features</div>
+        </div>
+        <div class="bullets">
+          <ul>
+            <li>Implemented sub-features for Paytren Connect (chat/video/voice) and built TVRI Ramadhan app.</li>
+            <li><strong>Tech:</strong> Kotlin, Retrofit, Google Maps, Live Streaming APIs.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="role fade" tabindex="0">
+        <div class="meta">
+          <div>
+            <div class="company">Illiyin Studio</div>
+            <div style="font-size:13px;color:var(--muted)">Android Developer (Intern) — May 2017 – Jul 2017, Malang</div>
+          </div>
+          <div class="range">Mobile MVPs</div>
+        </div>
+        <div class="bullets">
+          <ul>
+            <li>Built Muslim Habit app (auth, alarms, recap); authored business process docs and backend APIs (PHP7 + MySQL).</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="projects" class="section">
+    <h2>Selected Portfolio</h2>
+    <p class="lead">Representative projects with impact, downloads, and core technologies.</p>
+
+    <div class="grid">
+      <article class="card fade">
+        <div class="thumb" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop" alt="Fitness app">
+        </div>
+        <h3>Fitness Tracker (example)</h3>
+        <p style="color:var(--muted)">Cross-platform fitness app with tracking, analytics, and social challenges. Focused on performance and battery efficiency.</p>
+        <div style="margin:8px 0">
+          <span class="tech">React Native</span><span class="tech">Firebase</span><span class="tech">TypeScript</span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="btn-primary" href="#" target="_blank" rel="noopener">Play Store</a>
+          <button class="btn-ghost" onclick="openProject('Fitness Tracker')">Details</button>
+        </div>
+      </article>
+
+      <article class="card fade">
+        <div class="thumb" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45?q=80&w=1200&auto=format&fit=crop" alt="E-learning app">
+        </div>
+        <h3>SmartLearn (example)</h3>
+        <p style="color:var(--muted)">E-learning app with video lessons, offline caching, and progress sync across devices.</p>
+        <div style="margin:8px 0">
+          <span class="tech">React Native</span><span class="tech">Zustand</span><span class="tech">Firestore</span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="btn-primary" href="#" target="_blank" rel="noopener">Play Store</a>
+          <button class="btn-ghost" onclick="openProject('SmartLearn')">Details</button>
+        </div>
+      </article>
+
+      <article class="card fade">
+        <div class="thumb" aria-hidden="true">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" alt="Budget app">
+        </div>
+        <h3>Budget Buddy (example)</h3>
+        <p style="color:var(--muted)">Personal finance app with visual reports, budgets, and recurring expense tracking.</p>
+        <div style="margin:8px 0">
+          <span class="tech">React Native</span><span class="tech">SQLite</span><span class="tech">Analytics</span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <a class="btn-primary" href="#" target="_blank" rel="noopener">Play Store</a>
+          <button class="btn-ghost" onclick="openProject('Budget Buddy')">Details</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <h2>Education & Learning</h2>
+    <p class="lead">Formal degrees and continuous upskilling relevant to mobile & software development.</p>
+
+    <div style="max-width:880px;margin:0 auto">
+      <div class="role fade" style="padding:12px">
+        <div class="company">Telkom University — B.Sc. Informatics Engineering</div>
+        <div style="font-size:13px;color:var(--muted)">2015 – 2019, Bandung</div>
+        <div style="margin-top:8px;color:var(--muted)">Key coursework: Data Structures, OOP, AI, Machine Learning, Data Mining, Databases, Networking.</div>
+      </div>
+
+      <div class="role fade" style="padding:12px;margin-top:10px">
+        <div class="company">VHS Telkom Malang — Software Engineering</div>
+        <div style="font-size:13px;color:var(--muted)">2012 – 2015, Malang</div>
+        <div style="margin-top:8px;color:var(--muted)">Focus: Web (front/back), Android native, multimedia (video/illustration).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements" class="section" style="background:linear-gradient(180deg, rgba(245,248,255,0.6), transparent)">
+    <h2>Achievements</h2>
+    <p class="lead">Recognitions and competition results demonstrating product impact and innovation.</p>
+
+    <div class="metrics">
+      <div class="metric fade">
+        <b>50k+</b>
+        <div style="color:var(--muted)">Total app downloads</div>
+      </div>
+
+      <div class="metric fade">
+        <b>1st • National</b>
+        <div style="color:var(--muted)">House of Technology — App Innovation (UB, 2018)</div>
+      </div>
+
+      <div class="metric fade">
+        <b>APICTA</b>
+        <div style="color:var(--muted)">Top 15 nominee — Asia Pacific ICT Awards (2018)</div>
+      </div>
+
+      <div class="metric fade">
+        <b>Multiple</b>
+        <div style="color:var(--muted)">Hackathon / competition wins & finalists (2017–2019)</div>
+      </div>
+    </div>
+
+    <ul style="max-width:900px;margin:18px auto 0;color:var(--muted);padding-left:18px">
+      <li>First Place — Telemedicine Innovation Challenge (Monash Malaysia, 2017)</li>
+      <li>Runner-up — Annual Informatics Competition (UNDIP, 2018)</li>
+      <li>Favorites Winner — Joints App Innovation (UGM, 2018)</li>
+      <li>Outstanding Graduate — Telkom University (2019)</li>
+    </ul>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <h2>Skills</h2>
+    <p class="lead">Technical stack and soft skills used in product development and team collaboration.</p>
+
+    <div class="skills-grid">
+      <div class="skill fade">React Native</div>
+      <div class="skill fade">Android (Java / Kotlin)</div>
+      <div class="skill fade">React JS</div>
+      <div class="skill fade">TypeScript / JavaScript</div>
+      <div class="skill fade">Redux / Zustand</div>
+      <div class="skill fade">Firebase (Auth, Firestore, Messaging)</div>
+      <div class="skill fade">REST & GraphQL APIs</div>
+      <div class="skill fade">CI/CD (Jenkins)</div>
+      <div class="skill fade">Testing (Jest)</div>
+      <div class="skill fade">Product Thinking & Mentoring</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer>
+    <div class="container">
+      <div style="font-weight:800">Contact</div>
+      <div style="color:var(--muted);margin-top:6px">john.doe@example.com • +62 812 3456 7890 • Jakarta, Indonesia</div>
+
+      <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a class="chip" href="mailto:john.doe@example.com">Email</a>
+        <a class="chip" href="https://github.com/naofalhakim" target="_blank" rel="noopener">GitHub</a>
+        <a class="chip" href="https://linkedin.com/in/username" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="https://play.google.com/store/apps/dev?id=XXXX" target="_blank" rel="noopener">Play Store</a>
+      </div>
+
+      <div style="margin-top:14px;color:var(--muted);font-size:13px">© 2025 Moch. Agusta Naofal H</div>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-in observer
+    (function(){
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('show');
+            io.unobserve(e.target);
+          }
+        });
+      }, {threshold: 0.12});
+
+      document.querySelectorAll('.fade').forEach(el => io.observe(el));
+    })();
+
+    function openProject(name){
+      alert(name + " — project details placeholder. Replace with project description or modal content.");
+    }
+
+    // Print to PDF (Download CV)
+    function generatePDF() {
+      // Open print dialog for the full page so user can save as PDF
+      window.print();
+    }
+  </script>
+</body>
+</html>
